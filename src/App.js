@@ -77,10 +77,26 @@ class App extends Component {
     }
 
     if (typeof values["password"] !== "undefined") {
-      let pattern = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/i);
-      if (!pattern.test(values["password"])) {
+      const pass = values["password"];
+      const lowerLetter = pass.match(/[a-z]/g);
+      const upperLetter = pass.match(/[A-Z]/g);
+      const num = pass.match(/[0-9]/g);
+      const notSpecial = /[^a-zA-Z0-9]/.test(pass);
+      if (lowerLetter === null) {
         isValid = false;
-        errors["password"] = "*Please enter secure and strong password.";
+        errors["password"] = "*Please enter atleast one lower letter.";
+      } else if (upperLetter === null) {
+        isValid = false;
+        errors["password"] = "*Please enter atleast one upper letter.";
+      } else if (num === null) {
+        isValid = false;
+        errors["password"] = "*Please enter atleast one number.";
+      } else if (pass.length < 8) {
+        isValid = false;
+        errors["password"] = "*Please enter min 8 letter.";
+      } else if (notSpecial) {
+        isValid = false;
+        errors["password"] = "*Please enter only lower upper letter & number";
       }
     }
 
