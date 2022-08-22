@@ -15,7 +15,7 @@ const AnotherComp = (props: any) => {
 const RemoteForm = (props: any) => {
   
   return <div style={{ width: '500px', margin: '1rem', marginLeft: 'auto', marginRight: 'auto' }}>
-    <h1>This is a page rendered from a remote server</h1>
+    <h1>After Demo Form Component</h1>
     <AnotherComp data={[1, 2, 3, 4, 5]} />
     <Toolkit><FormControl id={"text-input"}>
       <Label>My Label</Label>
